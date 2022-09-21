@@ -1,0 +1,91 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #a9dce3;
+}
+
+.welcome-page {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    align-content: center;
+    flex-basis: auto;
+    justify-content: space-evenly;
+    width: 50%;
+    margin: auto;
+    padding: 15rem 0;
+}
+
+.welcome-page h1 {
+    font-size: 50px;
+    line-height: 1.5;
+    color: #7689de
+}
+
+.start-game {
+    width: 5rem;
+    height: 5rem;
+    top:50%;
+    border-radius:10px;
+    box-shadow: 0px 0px 2px 2px rgb(0,0,0);
+    font-weight: bold;
+}
+.container-wrapper {
+    margin: .5rem .5rem;
+    padding: .5rem .5rem;
+}
+
+.top-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: black;
+    width: 100%;
+    background-color: 7689de;
+}
+
+.vhs {
+    display: inline-block;
+    float: left;
+    font-weight: bold;
+    font-size: 20px;
+    width: 5rem;
+    height: 5rem;
+    box-shadow: 0px 0px 2px 2px rgb(0,0,0);
+}
+
+
+.count-timer {
+    display: inline-block;
+    float: right;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+#card-container {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    align-content: center;
+    flex-basis: auto;
+    justify-content: space-evenly;
+    width: 50%;
+    margin: auto;
+    padding: 7rem 0;
+}
+
+.result-container {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    align-content: center;
+    flex-basis: auto;
+    justify-content: space-evenly;
+    width: 50%;
+    margin: auto;
+    padding: 7rem 0;
+}
