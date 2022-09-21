@@ -64,7 +64,7 @@
     font-size: 30px;
 }
 
-#card-container {
+.question-box {
     display:flex;
     flex-direction: column;
     align-items: center;
@@ -75,17 +75,5 @@
     width: 50%;
     margin: auto;
     padding: 7rem 0;
-}
-
-.result-container {
-    display:flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    align-content: center;
-    flex-basis: auto;
-    justify-content: space-evenly;
-    width: 50%;
-    margin: auto;
-    padding: 7rem 0;
+    list-style-type: none;
 }

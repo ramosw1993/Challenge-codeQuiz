@@ -4,55 +4,38 @@ let startGame = document.querySelector(".start-game");
 let vhsBtn = document.querySelector(".vhs");
 let timerCounter = document.querySelector(".count-timer");
 // quiz card
-let questionH2 = document.getElementById("#question-text");
-let cardOp = document.getElementById("#card-options");
-let cardQuest = document.getElementById("card-questions");
-let option0 = document.getElementById("#option0");
-let option1 = document.getElementById("#option1");
-let option2 = document.getElementById("#option2");
-let option3 = document.getElementById("#option3");
+let questBox = document.querySelector(".question-box");
+let choicesUl = document.getElementById("#choices-ul");
+var ulCreate = document.createElement("ul");
 // result section
 const cardAns = document.querySelector(".card-answer");
 const userResult = document.querySelector(".result-text");
 
-let secondsLeft = 30;
-let chosenQuestion = "";
-let text = [];
-let questText = [];
 
-let currentQuestion;
+let secondsLeft = 30;
+let userChoices;
+let userQuestion;
+let newItem;
+let output = 0;
 let score = 0;
 
  
 let quizQuestions = [
-   {
-       questionIndex: "Is Javascript the same as Java?",
-       option: [
-           {option0: "unsure", value: false},
-           {option1: "False", value: true},
-           {option2: "Some-what true", value: false},
-           {option3: "Duh - its in the name", value: false},
-       ]
-   },
-   {
-       questionIndex: "Please select the correct example of a for loop?",
-       option: [
-           {option0: "for (i = 0; i < 5; i++)", value: false},
-           {option1: "for (let i = 0; i < 5; i++)", value: true},
-           {option2: "for (let i = 0; i < 5; +)", value: false},
-           {option3: "for (let i = 0; i < 5: i++)", value: false},
-       ]
-   },
-   {
-       questionIndex: "Inside which HTML element do we put in Javascript",
-       option: [
-           {option0: "<p>", value: false},
-           {option1: "<style>", value: false},
-           {option2: "<script>", value: true},
-           {option3: "<scipt>", value: false},
-       ]
-   }
-]
+  { question: "Question: Is Javascript the same as Java?",
+    option: ["Options:", "true", "somewhat-true", "false", "duh its in the name!"],
+    answer: "false"
+  },
+  {
+    question: "Question: Please select the correct example of a for loop?",
+    option: ["Options: ", "for (i = 0; i < 5; i++)", "for (let i = 0; i < 5; i++)", "for (let i = 0; i < 5; +)", "for (let i = 0; i < 5: i++)"],
+    answer: "for (let i = 0; i < 5; i++)"
+  },
+  {
+    question: "Question: Inside which HTML element do we put in Javascript?",
+    option: ["Options", "<script>", "<style>", "<p>", "<scrpt>"],
+    answer: "<script>"
+  },
+];
 
 console.log(quizQuestions);
 // starts timer in order to start the game
@@ -78,19 +61,44 @@ function setTime() {
   
   }
 
-  function displayQuestion() {
-    let question = quizQuestions[currentQuestion];
-    let options = question.options;
+  function displayQuestion(output) {
+    questBox.innerHTML = " ";
+    ulCreate.innerHTML = " ";
 
-    let h2QuestionElement = document.querySelector("#question-text");
-     h2QuestionElement.textContent = question.questionText;
-  
-    for (let i = 0; i < options.length; i++) {
-      let option = options[i];
-      let optionButton = document.querySelector("#option" + i);
-      optionButton.textContent = option;
+    for (let i = 0; i < quizQuestions.length; i++) {
+      let userQuestion = quizQuestions[output].question;
+      let userChoices = quizQuestions[output].option;
+      questBox.textContent = userQuestion;
+      ulCreate.textContent = userChoices;
+    }
+    quizQuestions.forEach(function(quizQuestions, option) {
+      let listItem = document.createElement("li");
+      listItem.textContent = option;
+      questBox.appendChild(ulCreate);
+      ulCreate.appendChild(listItem);
+      listItem.addEventListener("click", (compare));
+    })
+  };
+
+  function compare(event) {
+    event.preventDefault();
+
+    let element = event.target;
+
+    if(element.match("li")) {
+
+      let createDiv = document.createElement("div");
+      createDiv.setAttribute("id", "createDiv");
+
+      if(element.textContent == quizQuestions[question].answer) {
+        score++;
+        createDiv.textContent = "Correct! the answer: " + quizQuestions[question].answer;
+      } else {
+        secondsLeft--;
+        createDiv.textContent = "Wrong! The correct answer is: " + quizQuestions[question].answer;
+      };
     }
   }
 
-    displayQuestion();
     setTime();
+    displayQuestion(output);
